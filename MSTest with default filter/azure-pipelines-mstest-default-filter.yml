@@ -8,6 +8,8 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: cd "MSTest with default filter"
+
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
@@ -24,6 +26,6 @@ steps:
       **\*test*.dll
       !**\*TestAdapter.dll
       !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
+    # searchFolder: '$(System.DefaultWorkingDirectory)'
     failOnMinTestsNotRun: true
     minimumExpectedTests: '1'
