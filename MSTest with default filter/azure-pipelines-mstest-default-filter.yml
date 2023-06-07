@@ -6,12 +6,13 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  directory: 'MSTest with default filter'
 
 steps:
 - script: cd 
 
 - script: dotnet build --configuration $(buildConfiguration)
-  workingDirectory: 'MSTest with default filter'
+  workingDirectory: $(directory)
   displayName: 'dotnet build $(buildConfiguration)'
 
 - task: VisualStudioTestPlatformInstaller@1
@@ -27,6 +28,6 @@ steps:
       **\*test*.dll
       !**\*TestAdapter.dll
       !**\obj\**
-    searchFolder: 'MSTest with default filter'
+    searchFolder: $(directory)
     failOnMinTestsNotRun: true
     minimumExpectedTests: '1'
